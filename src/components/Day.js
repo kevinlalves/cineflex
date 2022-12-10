@@ -1,11 +1,19 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Button from "./Button";
 
 export default function Day({ day }) {
   return (
     <DayContent>
       <p>{`${day.weekday} - ${day.date}`}</p>
       <ShowtimesContent>
-        {day.showtimes.map(showtime => <Button text={showtime.name} />)}
+        {day.showtimes.map(showtime => {
+          return (
+            <Link key={showtime.id} to={`assentos/${day.id}`}>
+              <Button text={showtime.name} />
+            </Link>
+          );
+        })}
       </ShowtimesContent>
     </DayContent>
   );
@@ -16,10 +24,11 @@ const DayContent = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
+  margin-bottom: 23px;
   p {
     font-size: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
 `;
 
