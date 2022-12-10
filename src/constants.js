@@ -2,8 +2,8 @@ const host = "https://mock-api.driven.com.br/api/v8/cineflex";
 
 const api = Object.freeze({
   movies: host+"/movies" ,
-  showtimes: host+"/showtimes",
-  book: host+"/seats/book-many"
+  sessions: host+"/showtimes",
+  bookSeats: host+"/seats/book-many"
 });
 
 const theme = Object.freeze({
@@ -19,4 +19,11 @@ const theme = Object.freeze({
   }
 });
 
-export { api };
+const dialog = Object.freeze({
+  movies: "Selecione o filme",
+  sessions: "Selecione o horário",
+  seats: "Selecione o(s) assento(s)",
+  success: "Pedido feito com sucesso!"
+});
+
+export { api, theme, dialog };
