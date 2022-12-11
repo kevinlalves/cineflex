@@ -40,7 +40,7 @@ export default function Form({ selectedSeats, setSelectedSeats, session }) {
         <SeatInput key={seat.id} selectedSeats={selectedSeats} idx={idx} setSelectedSeats={setSelectedSeats} />
       )}
       <div></div>
-      <Button text="Reservar assento(s)" />
+      <Button dataTest="book-seat-btn" text="Reservar assento(s)" />
     </FormContent>
   );
 }

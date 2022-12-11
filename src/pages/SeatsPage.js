@@ -27,6 +27,11 @@ export default function SeatsPage() {
 
     let newSelectedSeats;
     if (seatStates[seat.id] === "selected") {
+      const deselect = window
+        .confirm("Tem certeza que deseja desitir do assento? Os dados prenchidos nele serão perdidos.");
+      if (!deselect) {
+        return;
+      }
       newSelectedSeats = selectedSeats.filter(ele => ele.id !== seat.id);
     } else {
       newSelectedSeats = [{ id: seat.id, seatName: seat.name, name: "", cpf: "" }, ...selectedSeats];
@@ -60,7 +65,7 @@ export default function SeatsPage() {
         <Seats>
           {session
             ? session.seats.map(seat =>
-              <Seat key={seat.id} onClick={() => selectSeat(seat)} seatState={seatStates[seat.id]}>
+              <Seat data-test="seat" key={seat.id} onClick={() => selectSeat(seat)} seatState={seatStates[seat.id]}>
                 {format(seat.name)}
               </Seat>
             )

@@ -10,6 +10,7 @@ export default function SeatInput({ selectedSeats, setSelectedSeats, idx }) {
       <label>
         <p>Nome do comprador: (assento {selectedSeats[idx].seatName})</p>
         <input
+          data-test="client-name"
           type="text"
           value={selectedSeats[idx].name}
           onChange={e => updateField(e, "name")}
@@ -20,6 +21,7 @@ export default function SeatInput({ selectedSeats, setSelectedSeats, idx }) {
       <label>
         <p>CPF fo comprador: (assento {selectedSeats[idx].seatName})</p>
         <input
+          data-test="client-cpf"
           type="text"
           value={selectedSeats[idx].cpf}
           onChange={e => updateField(e, "cpf")}

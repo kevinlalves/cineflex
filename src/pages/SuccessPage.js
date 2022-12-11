@@ -18,16 +18,16 @@ export default function SuccessPage() {
         <p>{dialog.success}</p>
       </SuccessTitle>
       <SuccessPageContent>
-        <Section>
+        <Section data-test="movie-info">
           <p>Filme e sessão</p>
           <p>{session.movie.title}</p>
           <p>{`${session.day.date} ${session.name}`}</p>
         </Section>
-        <Section>
+        <Section data-test="seats-info">
           <p>Ingressos</p>
           {selectedSeats.map(seat => <p key={seat.id}>{`Assento ${seat.seatName}`}</p>)}
         </Section>
-        <Section>
+        <Section data-test="client-info">
           <p>Comprador</p>
           {selectedSeats.map(seat =>
             <div key={seat.id}>
@@ -37,7 +37,7 @@ export default function SuccessPage() {
           )}
         </Section>
         <VerticalSpace height="62px" />
-        <Button onClick={() => navigate("/")} text="Voltar pra Home" />
+        <Button dataTest="go-home-btn" onClick={() => navigate("/")} text="Voltar pra Home" />
       </SuccessPageContent>
     </>
   );

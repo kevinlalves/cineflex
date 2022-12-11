@@ -3,7 +3,7 @@ import MovieContent from "../style/MovieContent";
 
 export default function Footer({ posterURL, title, weekday, name  }) {
   return (
-    <FooterContent>
+    <FooterContent data-test="footer">
       <MovieImage>
         <img src={posterURL} alt="movie poster" />
       </MovieImage>

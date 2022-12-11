@@ -4,13 +4,13 @@ import Button from "./Button";
 
 export default function Day({ day }) {
   return (
-    <DayContent>
+    <DayContent data-test="movie-day">
       <p>{`${day.weekday} - ${day.date}`}</p>
       <ShowtimesContent>
         {day.showtimes.map(showtime => {
           return (
             <Link key={showtime.id} to={`/assentos/${showtime.id}`}>
-              <Button text={showtime.name} />
+              <Button dataTest="showtime" text={showtime.name} />
             </Link>
           );
         })}

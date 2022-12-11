@@ -7,7 +7,7 @@ export default function Navbar({ backExists }) {
 
   return (
     <NavbarContent>
-      {backExists && <img onClick={() => navigate(-1)} src={arrow} alt="back arrow" />}
+      {backExists && <img data-test="go-home-header-btn" onClick={() => navigate(-1)} src={arrow} alt="back arrow" />}
       <p>CINEFLEX</p>
     </NavbarContent>
   );
