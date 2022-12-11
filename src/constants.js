@@ -11,8 +11,10 @@ const theme = Object.freeze({
     button: "#E8833A",
     title: "#E8833A",
     titleBack: "#C3CFD9",
-    chosenBorder: "#0E7D71",
-    chosen: "#1AAE9E",
+    available: "#C3CFD9",
+    availableBorder: "#7B8B99",
+    selectedBorder: "#0E7D71",
+    selected: "#1AAE9E",
     unavailableBorder: "#F7C52B",
     unavailable: "#FBE192",
     success: "#247A6B"

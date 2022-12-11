@@ -13,7 +13,7 @@ export default function SessionsPage() {
   useEffect(() => {
     fetch(api.movies + `/${id}/showtimes`)
       .then(response => response.json())
-      .then(data => setMovie(data))
+      .then(data => setMovie(data));
   }, [id]);
 
   return (
