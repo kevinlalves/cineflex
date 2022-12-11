@@ -22,6 +22,7 @@ export default function SeatsPage() {
 
   const selectSeat = seat => {
     if (seatStates[seat.id] === "unavailable") {
+      window.alert("Assento indisponível");
       return;
     }
 
