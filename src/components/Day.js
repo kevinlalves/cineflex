@@ -9,7 +9,7 @@ export default function Day({ day }) {
       <ShowtimesContent>
         {day.showtimes.map(showtime => {
           return (
-            <Link key={showtime.id} to={`assentos/${day.id}`}>
+            <Link key={showtime.id} to={`/assentos/${showtime.id}`}>
               <Button text={showtime.name} />
             </Link>
           );
@@ -24,7 +24,7 @@ const DayContent = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  width: 90%;
+  width: 85%;
   margin-bottom: 23px;
   p {
     font-size: 20px;

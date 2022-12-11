@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import styled from "styled-components";
 import Loading from "../components/Loading";
 import { api, dialog } from "../constants";
 import Title from "../style/Title";
+import Form from "../components/Form";
+import { Seats, Seat } from "../style/Seats";
+import SeatsInfo from "../components/SeatsInfo";
+import styled from "styled-components";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 export default function SeatsPage() {
   const [session, setSession] = useState(undefined);
@@ -16,10 +21,19 @@ export default function SeatsPage() {
   }
 
   const selectSeat = seat => {
-    const newSelectedSeats = [seat.id, ...selectedSeats];
+    if (seatStates[seat.id] === "unavailable") {
+      return;
+    }
+
+    let newSelectedSeats;
+    if (seatStates[seat.id] === "selected") {
+      newSelectedSeats = selectedSeats.filter(ele => ele.id !== seat.id);
+    } else {
+      newSelectedSeats = [{ id: seat.id, seatName: seat.name, name: "", cpf: "" }, ...selectedSeats];
+    }
     setSelectedSeats(newSelectedSeats);
-    idString = seat.id.toString();
-    const newSeatStates = { idString: "selected", ...seatStates }
+    const newSeatStates = { ...seatStates }
+    newSeatStates[seat.id] = (seatStates[seat.id] === "selected" ? "available" : "selected");
     setSeatStates(newSeatStates);
   };
 
@@ -38,52 +52,39 @@ export default function SeatsPage() {
 
   return (
     <>
-      <Title>
-        <p>{dialog.seats}</p>
-      </Title>
-      <Seats>
-        {session
-          ? session.seats.map(seat =>
-            <Seat onClick={() => selectSeat(seat)} seatState={seatStates[seat.id]}>{format(seat.name)}</Seat>
-          )
-          : <Loading />
+      <Navbar backExists={true} />
+      <SeatsPageContent>
+        <Title>
+          <p>{dialog.seats}</p>
+        </Title>
+        <Seats>
+          {session
+            ? session.seats.map(seat =>
+              <Seat key={seat.id} onClick={() => selectSeat(seat)} seatState={seatStates[seat.id]}>
+                {format(seat.name)}
+              </Seat>
+            )
+            : <Loading />
+          }
+        </Seats>
+        <SeatsInfo />
+        <Form session={session} selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats} />
+        {session &&
+          <Footer
+            title={session.movie.title}
+            posterURL={session.movie.posterURL}
+            weekday={session.day.weekday}
+            name={session.name}
+          />
         }
-      </Seats>
-      <Seats>
-        <SeatInfo>
-          <Seat seatState="selected" />
-          <p>Selecionado</p>
-        </SeatInfo>
-        <SeatInfo>
-          <Seat seatState="available" />
-          <p>Disponível</p>
-        </SeatInfo>
-        <SeatInfo>
-          <Seat seatState="unavailable" />
-          <p>Indisponível</p>
-        </SeatInfo>
-      </Seats>
+      </SeatsPageContent>
     </>
   );
 }
 
-const Seats = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const Seat = styled.button`
-  height: 26px;
-  width: 26px;
-  background-color: ${props => props.theme.color[props.seatState]};
-  border-radius: 50%;
-  border: 1px ${props => props.theme.color[props.seatState+"Border"]};
-`;
-
-const SeatInfo = styled.div`
+const SeatsPageContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 137px;
 `;

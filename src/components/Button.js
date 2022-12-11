@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export default function Button({ text }) {
+export default function Button({ text, onClick }) {
   return (
-    <ButtonContent>
+    <ButtonContent onClick={onClick}>
       {text}
     </ButtonContent>
   );

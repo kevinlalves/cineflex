@@ -5,6 +5,8 @@ import Loading from "../components/Loading";
 import { api, dialog } from "../constants";
 import Title from "../style/Title";
 import Day from "../components/Day";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 export default function SessionsPage() {
   const [movie, setMovie] = useState(undefined);
@@ -18,12 +20,14 @@ export default function SessionsPage() {
 
   return (
     <>
+      <Navbar backExists={true} />
       <Title>
         <p>{dialog.sessions}</p>
       </Title>
       <SessionsPageContent>
         {movie ? movie.days.map(day => <Day key={day.id} day={day} />) : <Loading />}
       </SessionsPageContent>
+      {movie && <Footer posterURL={movie.posterURL} title={movie.title} />}
     </>
 
   );
@@ -34,4 +38,5 @@ const SessionsPageContent = styled.div`
   width: 100%;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 137px;
 `;

@@ -4,6 +4,7 @@ import { dialog, api } from "../constants";
 import Movie from "../components/Movie";
 import Loading from "../components/Loading";
 import Title from "../style/Title";
+import Navbar from "../components/Navbar";
 
 export default function MoviesPage() {
   const [movies, setMovies] = useState(undefined);
@@ -17,6 +18,7 @@ export default function MoviesPage() {
 
   return (
     <>
+      <Navbar />
       <Title>
         <p>{dialog.movies}</p>
       </Title>
@@ -33,4 +35,5 @@ const MoviesPageContent = styled.div`
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 `;

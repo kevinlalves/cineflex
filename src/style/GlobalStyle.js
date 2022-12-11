@@ -139,7 +139,6 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
-    font-family: "Recursive", sans-serif !important;
   }
 
   button {
