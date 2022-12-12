@@ -12,18 +12,16 @@ export default function Form({ selectedSeats, setSelectedSeats, session }) {
     if (selectedSeats.length === 0) {
       return ;
     }
-    let body = {
-      ids: [],
-      compradores: []
-    };
-    for (const seat of selectedSeats) {
-      body.ids.push(seat.id);
-      body.compradores.push({ idAssento: seat.id, nome: seat.name, cpf: seat.cpf });
-    }
+    const body = JSON.stringify({
+      ids: selectedSeats.map(seat => seat.id),
+      compradores: selectedSeats.map(seat => {
+        return { idAssento: seat.id, nome: seat.name, cpf: seat.cpf };
+      })
+    });
     fetch(api.bookSeats, {
       method: "post",
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body
     }).then(response => {
       if (response.statusText === "OK") {
         navigate("/sucesso", { state: { selectedSeats, session } });
