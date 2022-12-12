@@ -38,7 +38,7 @@ export default function SeatsPage() {
       newSelectedSeats = [{ id: seat.id, seatName: seat.name, name: "", cpf: "" }, ...selectedSeats];
     }
     setSelectedSeats(newSelectedSeats);
-    const newSeatStates = { ...seatStates }
+    const newSeatStates = { ...seatStates };
     newSeatStates[seat.id] = (seatStates[seat.id] === "selected" ? "available" : "selected");
     setSeatStates(newSeatStates);
   };
@@ -54,7 +54,7 @@ export default function SeatsPage() {
         }
         setSeatStates(newSeatStates);
       });
-  }, [id])
+  }, [id]);
 
   return (
     <>

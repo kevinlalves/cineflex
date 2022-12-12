@@ -26,13 +26,12 @@ export default function Form({ selectedSeats, setSelectedSeats, session }) {
       body: JSON.stringify(body)
     }).then(response => {
       if (response.statusText === "OK") {
-        console.log("session", session);
         navigate("/sucesso", { state: { selectedSeats, session } });
       } else {
         alert(`Request failed with message: ${response.statusText}`);
       }
     });
-  }
+  };
 
   return (
     <FormContent onSubmit={submitForm}>
